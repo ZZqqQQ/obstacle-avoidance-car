@@ -44,6 +44,7 @@
 ".\objects\delay.o"
 ".\objects\usart.o"
 ".\objects\sys.o"
+".\objects\l298n.o"
 ".\objects\motor.o"
 ".\objects\pwm.o"
 --library_type=microlib --strict --scatter ".\Objects\ExecutableFile.sct"

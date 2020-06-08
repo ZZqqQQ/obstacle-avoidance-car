@@ -40,6 +40,6 @@
 .\objects\app_task.o: .\HardWare\SR_04\SR_04.h
 .\objects\app_task.o: .\Bsp\bsp.h
 .\objects\app_task.o: .\HardWare\SR_04\SR_04.h
-.\objects\app_task.o: .\L298N\motor.h
-.\objects\app_task.o: .\L298N\L298N.h
+.\objects\app_task.o: .\HardWare\L298N\motor.h
+.\objects\app_task.o: .\HardWare\L298N\L298N.h
 .\objects\app_task.o: .\HardWare\delay\delay.h

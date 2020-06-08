@@ -1,4 +1,4 @@
-.\objects\pwm.o: L298N\PWM.c
+.\objects\pwm.o: HardWare\L298N\PWM.c
 .\objects\pwm.o: .\Bsp\bsp.h
 .\objects\pwm.o: .\Libraries\CMSIS\DeviceSupport\stm32f10x.h
 .\objects\pwm.o: .\Libraries\CMSIS\CoreSupport\core_cm3.h

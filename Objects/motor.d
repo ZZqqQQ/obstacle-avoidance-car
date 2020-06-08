@@ -1,5 +1,5 @@
-.\objects\motor.o: L298N\motor.c
-.\objects\motor.o: L298N\L298N.h
+.\objects\motor.o: HardWare\L298N\motor.c
+.\objects\motor.o: HardWare\L298N\L298N.h
 .\objects\motor.o: .\HardWare\sys\sys.h
 .\objects\motor.o: .\Libraries\CMSIS\DeviceSupport\stm32f10x.h
 .\objects\motor.o: .\Libraries\CMSIS\CoreSupport\core_cm3.h
@@ -31,5 +31,5 @@
 .\objects\motor.o: .\Libraries\STM32F10x_StdPeriph_Driver\inc\stm32f10x_wwdg.h
 .\objects\motor.o: .\Libraries\STM32F10x_StdPeriph_Driver\inc\misc.h
 .\objects\motor.o: .\HardWare\delay\delay.h
-.\objects\motor.o: L298N\motor.h
-.\objects\motor.o: L298N\pwm.h
+.\objects\motor.o: HardWare\L298N\motor.h
+.\objects\motor.o: HardWare\L298N\pwm.h

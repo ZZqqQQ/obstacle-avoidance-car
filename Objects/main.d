@@ -39,5 +39,5 @@
 .\objects\main.o: .\HardWare\SR_04\SR_04.h
 .\objects\main.o: .\HardWare\SR_04\SR_04.h
 .\objects\main.o: .\HardWare\delay\delay.h
-.\objects\main.o: .\L298N\motor.h
-.\objects\main.o: .\L298N\L298N.h
+.\objects\main.o: .\HardWare\L298N\motor.h
+.\objects\main.o: .\HardWare\L298N\L298N.h
