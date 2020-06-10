@@ -1,15 +1,17 @@
+/************************************BSP.c***********************************/
+/*                    时钟，IO口以及其他部分外设初始化                      */
+/*           Initialize clock, IO port and some of other peripheral         */
+/*  				电子科技大学嵌入式避障小车一组版权所有                  */
+/*  		  Copyright by Embedded Obstacle Avoidance Team 1, UESTC        */
+/****************************************************************************/
 #include "bsp.h"
-
-
-
-
 
 void RCC_Configuration(void)
 {
   RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA  | RCC_APB2Periph_GPIOB  | 
                          RCC_APB2Periph_GPIOC  | RCC_APB2Periph_GPIOD  | 
                          RCC_APB2Periph_GPIOE  | RCC_APB2Periph_GPIOF  | 
-                         RCC_APB2Periph_AFIO, ENABLE);							//使能APB2时钟
+                         RCC_APB2Periph_AFIO, ENABLE); //使能APB2时钟 enable clock of APB2
 }
 
 void GPIO_Basic_Configuration(void)
@@ -17,13 +19,13 @@ void GPIO_Basic_Configuration(void)
   GPIO_InitTypeDef GPIO_InitStructure;
 
   GPIO_InitStructure.GPIO_Pin =  GPIO_Pin_1 | GPIO_Pin_0 | GPIO_Pin_2 | GPIO_Pin_3;
-  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;                  //频率(50M)
-  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;                   //输出类型(推挽式输出)
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; //频率(50M) frequency(50MHz)
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; //输出类型(推挽式输出) output type(pull-push output)
   GPIO_Init(GPIOA, &GPIO_InitStructure);
 }
 
 
-//定时器4设置
+//定时器4设置 setting of tim4
 void hcsr04_NVIC()
 {
 	NVIC_InitTypeDef NVIC_InitStructure;
@@ -36,7 +38,7 @@ void hcsr04_NVIC()
 	NVIC_Init(&NVIC_InitStructure);
 }
 
-//IO口初始化 及其他初始化
+//IO口初始化 及其他初始化 initialization of IO port and other initialization
 void Hcsr04Init()
 {  
     TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;   
@@ -75,61 +77,60 @@ void Hcsr04Init()
 
 void L298N1_Init(void)
 {
- GPIO_InitTypeDef  GPIO_InitStructure;                 //声明GPIO初始化结构体
- RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA|RCC_APB2Periph_AFIO, ENABLE); //使能APB2时钟总线下PA端口时钟	
+ GPIO_InitTypeDef  GPIO_InitStructure;//声明GPIO初始化结构体 declare of GPIO initialization structure
+ RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA|RCC_APB2Periph_AFIO, ENABLE); //使能APB2时钟总线下PA端口时钟 enable clock PA port under APB2 clock bus
  GPIO_PinRemapConfig(GPIO_Remap_SWJ_JTAGDisable, ENABLE);	                  
 	
- GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8|GPIO_Pin_12; //PA12和PA12端口配置
- GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; 		 //推挽输出
- GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;		 //IO口速度为50MHz
- GPIO_Init(GPIOA, &GPIO_InitStructure);					       //根据设定参数初始化PA11|PA12
+ GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8|GPIO_Pin_12; //PA8和PA12端口配置 configure PA8 and PA12
+ GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; //推挽输出 pull-push output
+ GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;	//IO口速度为50MHz set speed of IO port at 50MHz
+ GPIO_Init(GPIOA, &GPIO_InitStructure);	 //根据设定参数初始化PA11|PA12 configure PA11 and PA12 according to parameter
  //GPIO_SetBits(GPIOA,GPIO_Pin_12|GPIO_Pin_11);
  
- GPIO_InitStructure.GPIO_Pin = GPIO_Pin_11|GPIO_Pin_15;//PA3端口配置
- GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; 		 //推挽输出
- GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;		 //IO口速度为50MHz
- GPIO_Init(GPIOA, &GPIO_InitStructure);					       //根据设定参数初始化PA3|PA4
+ GPIO_InitStructure.GPIO_Pin = GPIO_Pin_11|GPIO_Pin_15; //PA3端口配置 configure PA3
+ GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; //推挽输出 pull-push output
+ GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; //IO口速度为50MHz set speed of IO port at 50MHz
+ GPIO_Init(GPIOA, &GPIO_InitStructure); //根据设定参数初始化PA3|PA4 configure PA3 and PA4 according to parameter
  //GPIO_ResetBits(GPIOA,GPIO_Pin_8|GPIO_Pin_15);
 
 }
 
 void L298N2_Init(void)
 {
- GPIO_InitTypeDef  GPIO_InitStructure;                 //声明GPIO初始化结构体
-
- GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4|GPIO_Pin_6; //PA12和PA12端口配置
- GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; 		 //推挽输出
- GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;		 //IO口速度为50MHz
- GPIO_Init(GPIOA, &GPIO_InitStructure);					       //根据设定参数初始化PA11|PA12
+ GPIO_InitTypeDef  GPIO_InitStructure;
+ GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4|GPIO_Pin_6;
+ GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+ GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+ GPIO_Init(GPIOA, &GPIO_InitStructure);
  //GPIO_SetBits(GPIOA,GPIO_Pin_4);
  
- GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5|GPIO_Pin_7;//PA3端口配置
- GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; 		 //推挽输出
- GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;		 //IO口速度为50MHz
- GPIO_Init(GPIOA, &GPIO_InitStructure);					       //根据设定参数初始化PA3|PA4
+ GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5|GPIO_Pin_7;
+ GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+ GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+ GPIO_Init(GPIOA, &GPIO_InitStructure);
  //GPIO_ResetBits(GPIOA,GPIO_Pin_5);                            
 
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_14;//PA3端口配置
- GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; 		 //推挽输出
- GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;		 //IO口速度为50MHz
- GPIO_Init(GPIOC, &GPIO_InitStructure);					       //根据设定参数初始化PA3|PA4
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_14;
+ GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+ GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+ GPIO_Init(GPIOC, &GPIO_InitStructure);
  //GPIO_SetBits(GPIOC,GPIO_Pin_14);
 	
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_13;//PA3端口配置
- GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; 		 //推挽输出
- GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;		 //IO口速度为50MHz
- GPIO_Init(GPIOC, &GPIO_InitStructure);					       //根据设定参数初始化PA3|PA4
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_13;
+ GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+ GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+ GPIO_Init(GPIOC, &GPIO_InitStructure);
  //GPIO_Rese336tBits(GPIOC,GPIO_Pin_13);
 }
 
 void BSP_Initializes(void)
 {
 	
-  RCC_Configuration();                                               //时钟配置
-  GPIO_Basic_Configuration();                                        //IO配置
+  RCC_Configuration();
+  GPIO_Basic_Configuration();
 
-	NVIC_Configuration(); 	 //设置NVIC中断分组2:2位抢占优先级，2位响应优先级
-	uart_init(9600);	 	//串口初始化为9600
+	NVIC_Configuration();
+	uart_init(9600);
 	Hcsr04Init();
 	L298N1_Init();
 	L298N2_Init();

@@ -5,7 +5,7 @@
 #define _BSP_H
 
 void BSP_Initializes(void);
-void TIM2_PWM_Init(u16 arr,u16 psc); //¶¨Ê±Æ÷2º¯Êý
+void TIM2_PWM_Init(u16 arr,u16 psc);
 
 #endif
 
